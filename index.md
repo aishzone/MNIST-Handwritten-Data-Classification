@@ -1,6 +1,3 @@
----
-permalink: /index.md
----
 Handwritten digit recognition is the ability of computers to recognize human handwritten digits.It is a tough task for machine because handwritten digits are not perfect.Today we will use the image of a digit and recognizes the digit present in the image.
 ## CODING
 ### Fetching Dataset
@@ -44,6 +41,20 @@ y[36001]
 ```
 First I have reshaped the images from 1-D arrays to __28 x 28__ matrices. Then, you will observe that I have used `plt.imshow()`. Actually, that takes an array image data and plots the pixels on the screen. (The pixel densities in this case).
 Also the target label of `y[36001]` is __2__ as well, but with one caveat. The target label is a __string__. It is better to convert the labels to __integers__ as it will help further on in this guide.
+### Separating the Training and Testing Set
+Our next goal is to make a separate test set which the model will not see until the test phase is reached in the process.
 
+```
+x_train=x[:60000]
+x_test=x[60000:]
+y_train=y[:60000]
+y_test=y[60000:]
+```
+The training set has 60,000 images and size of the test set is 10,000.
+```
+shuffle_index=np.random.permutation(60000)
+x_train=x_train[shuffle_index]
+y_train=y_train[shuffle_index]
+```
 ### Training Data
-Training is possibble with the help of __data__ and __target__ is possible.
+Training is possible with the help of __data__ and __target__.For sufficiently large datasets, it is best to implement SGD Classifier instead of Logistic Classifier to produce similar results in much less time.Moving to classify using the Logistic Regression you have to set loss to log.
