@@ -133,7 +133,7 @@ acc
 ```
 __Accuracy__ : 88%
 
-You can go ahead and try to create a __Confusion matrix__ (Method 3 - To evaluate the accuracy of a classification) and Seaborn (To make visualization a central part of exploring and understanding data)....etc... Also you can display the Misclassified Images with predicted Labels.
+You can go ahead and try to create a __Confusion matrix__ (Method 3 - To evaluate the accuracy of a classification) and __Seaborn__ (To make visualization a central part of exploring and understanding data)....etc... Also you can __display the Misclassified Images with predicted Labels__.
 
 If you need help with the above mentioned then refer my `mnist_code.ipynb` attached in this repository.
 
