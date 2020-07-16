@@ -1,3 +1,6 @@
+---
+permalink: /index.html
+---
 Handwritten digit recognition is the ability of computers to recognize human handwritten digits.It is a tough task for machine because handwritten digits are not perfect.Today we will use the image of a digit and recognizes the digit present in the image.
 ## CODING
 ### Fetching Dataset
@@ -13,3 +16,8 @@ Now we go ahead and fetch our MNIST dataset.Although there are many ways to do i
 
 ```
 from sklearn.datasets import fetch_openml
+mnist=fetch_openml('mnist_784')
+mnist
+```
+### Training Data
+Training is possibble with the help of __data__ and __target__ is possible.
