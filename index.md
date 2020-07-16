@@ -1,4 +1,13 @@
-Handwritten digit recognition is the ability of computers to recognize human handwritten digits.It is a tough task for machine because handwritten digits are not perfect.Today we will use the image of a digit and recognizes the digit present in the image.
+### “When you’re fundraising, it’s AI. When you’re hiring, it’s ML. When you’re implementing, it’s logistic regression.”
+## Introduction
+Handwritten digit recognition is the ability of computers to recognize human handwritten digits.It is a tough task for machine because handwritten digits are not perfect.Today we will use the image of a digit and recognizes the digit present in the image.The MNIST data set contains 70000 images of handwritten digits (60,000 train_data  and 10,000 test_data).Each image has a resolution of 28x28, and the numerical pixel values are in greyscale. 
+
+![img](https://miro.medium.com/max/700/1*1TkgO9Zz6rC3KpAYNl5KfA.png)
+
+This is perfect for anyone who wants to get started with image classification using Scikit-Learn library. This is because, the set is neither too big to make beginners overwhelmed, nor too small so as to discard it altogether.It is a good database for people who want to try learning techniques and pattern recognition methods on real-world data while spending minimal efforts on preprocessing and formatting.
+
+As you will be using the Scikit-Learn library, it is best to use its helper functions to download the data set.In here, we use __Logistic Regression__ to predict digit labels based on images. 
+
 ## CODING
 ### Fetching Dataset
 Initially import some Standard Libraries
@@ -22,7 +31,7 @@ So basically, we get the `data` and `target` already separated. That makes the j
 mnist.keys()
 x, y = mnist['data'], mnist['target']
 ```
-The data key contains 70000 rows and 784 columns. These columns all contain the pixel intensities of the handwritten numbers ranging from 0 to 255 which are of 28 x 28 (784) images.The target key contains all the labels from 0 to 9 corresponding to the data key pixels.
+The data key contains 70000 rows (labels) and 784 columns (images). These columns all contain the pixel intensities of the handwritten numbers ranging from 0 to 255 which are of 28 x 28 (784) images.The target key contains all the labels from 0 to 9 corresponding to the data key pixels.
 
 ```
 x.shape
@@ -30,7 +39,7 @@ y.shape
 ```
 
 ### Display
-let us take a look at the first few digits that are in the data set. For this, you will be using the popular matplotlib library.
+let us take a look at any one of the digits that are present in the data set. For this, you will be using the popular matplotlib library.
 
 ```
 digit=x[36001]
@@ -118,5 +127,6 @@ acc
 ```
 __Accuracy__ : 88%
 
-### Confusion Matrix
+You can go ahead and try to create a confusion matrix and Seaborn ....etc... Also you can display the Misclassified Images with predicted Labels.
+If you need help with the above mentioned then refer my `mnist_code.ipynb` attched in this repository.
 
