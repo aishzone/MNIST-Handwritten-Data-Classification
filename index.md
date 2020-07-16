@@ -18,17 +18,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 ```
-Now we go ahead and fetch our MNIST dataset.Although there are many ways to do it we are goint to use **fetch_openml** function.The best part about downloading the data directly from Scikit-Learn is that it comes associated with a set of keys.
+Now we go ahead and fetch our MNIST dataset.Although there are many ways to do it we are goint to use **fetch_openml** function.
 
 ```
 from sklearn.datasets import fetch_openml
 mnist=fetch_openml('mnist_784')
 mnist
 ```
-So basically, we get the `data` and `target` already separated. That makes the job much easier.
+The best part about downloading the data directly from Scikit-Learn is that it comes associated with a set of keys.
+So basically, we get the `data` and `target` already separated. That makes our job much easier.
 
 ```
-mnist.keys()
+print(mnist.keys())
 x, y = mnist['data'], mnist['target']
 ```
 The data key contains 70000 rows (labels) and 784 columns (images). These columns all contain the pixel intensities of the handwritten numbers ranging from 0 to 255 which are of 28 x 28 (784) images.The target key contains all the labels from 0 to 9 corresponding to the data key pixels.
@@ -70,7 +71,7 @@ It is possible that all the 1's are grouped together in the first 10,000 of the 
 y_train=y_train.astype(np.int8)
 y_test=y_test.astype(np.int8)
 ```
-We convert the type of our target data from `string` to `integer`.You can check your before and after by running `y_train'.
+We convert the type of our target data from `string` to `integer`.You can check your before and after by running `y_train`.
 ### Binary Classifier to detect all 2's
 We make an attempt to create a Binary Classification (True/False) model that can detect whether the give input image is a 2 or not.
 ```
@@ -80,15 +81,19 @@ y_test_2=(y_test==2)
 y_test_2
 ```
 Now, we add a classifier to do our job.
-Step 1 : Import the model you want to use
-Step 2 : Make an instance of the Model
-Step 3 : Training the model on the data, storing the information learned from the data
-Step 4: Predict the labels of new data (new images)
+
+__Step 1__ : Import the model you want to use
+
+__Step 2__ : Make an instance of the Model
+
+__Step 3__ : Training the model on the data, storing the information learned from the data
+
+__Step 4__ : Predict the labels of new data (new images)
 ```
 from sklearn.linear_model import LogisticRegression #Step 1
 clf=LogisticRegression(tol=0.1,solver='lbfgs',max_iter=70000) #Step 2
 ```
-We change from default solver to `lbfgs` to make our process faster.Also change max_itr from 100(default) to 70000.
+We change from default solver to `lbfgs` to make our process faster.Also change max_itr from 100 (default) to 70,000.
 
 ```
 clf.fit(x_train,y_train_2) #Step 3
@@ -111,6 +116,7 @@ a=cross_val_score(clf,x_train,y_train_2,cv=5,scoring="accuracy",n_jobs=-1) #Mode
 a.mean()
 ```
 We now have a binary classifier with an accuracy of 97%.
+
 ### Step Modeling Pattern(MNIST) - Training,Fitting and Predicting
 Training is possible with the help of __data__ and __target__.For sufficiently large datasets, it is best to implement SGD Classifier instead of Logistic Classifier to produce similar results in much less time.Moving to classify using the Logistic Regression you have to set loss to log.
 ```
@@ -127,6 +133,10 @@ acc
 ```
 __Accuracy__ : 88%
 
-You can go ahead and try to create a confusion matrix and Seaborn ....etc... Also you can display the Misclassified Images with predicted Labels.
-If you need help with the above mentioned then refer my `mnist_code.ipynb` attched in this repository.
+You can go ahead and try to create a __Confusion matrix__ (Method 3 - To evaluate the accuracy of a classification) and Seaborn (To make visualization a central part of exploring and understanding data)....etc... Also you can display the Misclassified Images with predicted Labels.
+
+If you need help with the above mentioned then refer my `mnist_code.ipynb` attached in this repository.
+
+
+## Thank You!!
 
