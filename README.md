@@ -9,5 +9,5 @@ __mnist_code.ipynb__ -->Jupyter notebook that consists my entire code.
 
 #### Discover how to develop a classification model for handwritten digit classification using logistic regression from scratch
 
-                          "Assignment during Online Internship with DLithe(www.dlithe.com)"
+                          "Assignment during Online Internship with DLithe (www.dlithe.com)"
 
