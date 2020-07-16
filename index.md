@@ -56,5 +56,67 @@ shuffle_index=np.random.permutation(60000)
 x_train=x_train[shuffle_index]
 y_train=y_train[shuffle_index]
 ```
-### Training Data
+It is possible that all the 1's are grouped together in the first 10,000 of the set and all 2's in the next 10,000 and so on. So it is necessary that we perform a __Shuffling__ or else our model may not be trained to recognize 8's and 9's.
+```
+y_train=y_train.astype(np.int8)
+y_test=y_test.astype(np.int8)
+```
+We convert the type of our target data from `string` to `integer`.You can check your before and after by running `y_train'.
+### Binary Classifier to detect all 2's
+We make an attempt to create a Binary Classification (True/False) model that can detect whether the give input image is a 2 or not.
+```
+y_train_2=(y_train==2)
+y_train_2
+y_test_2=(y_test==2)
+y_test_2
+```
+Now, we add a classifier to do our job.
+Step 1 : Import the model you want to use
+Step 2 : Make an instance of the Model
+Step 3 : Training the model on the data, storing the information learned from the data
+Step 4: Predict the labels of new data (new images)
+```
+from sklearn.linear_model import LogisticRegression #Step 1
+clf=LogisticRegression(tol=0.1,solver='lbfgs',max_iter=70000) #Step 2
+```
+We change from default solver to `lbfgs` to make our process faster.Also change max_itr from 100(default) to 70000.
+
+```
+clf.fit(x_train,y_train_2) #Step 3
+```
+So, we have replaced all labels from 0 till 9 with true and false.
+
+```
+clf.predict([digit]) #Step 4
+```
+Our Binary Classifier (clf) will return __true__ if 2 is present or else returns __false__. 
+
+```
+score = clf.score(x_test, y_test_2) #Model performance - Method 1
+score
+```
+This is a simple way of checking the accuracy or model performance of our model.The other method is __Cross-Validation__ which comparitively takes longer time.
+```
+from sklearn.model_selection import cross_val_score
+a=cross_val_score(clf,x_train,y_train_2,cv=5,scoring="accuracy",n_jobs=-1) #Model performance - Method 2
+a.mean()
+```
+We now have a binary classifier with an accuracy of 97%.
+### Step Modeling Pattern(MNIST) - Training,Fitting and Predicting
 Training is possible with the help of __data__ and __target__.For sufficiently large datasets, it is best to implement SGD Classifier instead of Logistic Classifier to produce similar results in much less time.Moving to classify using the Logistic Regression you have to set loss to log.
+```
+from sklearn.linear_model import SGDClassifier #Step 1
+clf = SGDClassifier(loss='log', random_state=42) #Step 2
+clf.fit(x_train, y_train) #Step 3
+clf.predict(x_test[0:10]) #Step 4
+```
+Now we go ahead and check our model performance
+
+```
+acc = clf.score(x_test,y_test)
+acc
+```
+__Accuracy__ : 88%
+
+### Confusion Matrix
+
